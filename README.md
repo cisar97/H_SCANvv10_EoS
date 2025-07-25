@@ -9,10 +9,12 @@ This repository contains tabulated data for the **Equation of State (EoS) of Hyd
 
 ## 📄 Description
 
-The file `H_SCANvv10_EoS.txt` provides a tabulated Hydrogen EoS over a **regular grid in Temperature and Pressure**, suitable for use in planetary interior modeling and related simulations.
+### `H_SCANvv10_EoS.txt`
 
-- **Temperature range**: 150 K to 50000 K   (149 points)
-- **Pressure range**: 10e-4 GPa to 10695 GPa  (349 points)
+This file provides a tabulated Hydrogen EoS over a **regular grid in Temperature and Pressure**, suitable for use in planetary interior modeling and related simulations.
+
+- **Temperature range**: 150 K to 50000 K   (149 points)  
+- **Pressure range**: 10⁻⁴ GPa to 10695 GPa  (349 points)
 
 The data file consists of 5 columns:
 
@@ -22,18 +24,37 @@ The data file consists of 5 columns:
 4. **log₁₀(Internal Energy)** [MJ/kg]  
 5. **Entropy** [MJ/kg/K]
 
-As shown in Fig. 6 of the paper the H_SCAN+vv10_EoS table is made by 3 components: 
-- on the low Pressure side going from 150 to 11000K and from 10e-4 to 0.1 g/cm^3 the SCvH data have been used. 
-- from 2000 to 15000K and from 0.3 to 2.6 g/cm^3 the SCAN+vv10 data have been used. 
-- Above 3.4 g/cm^3 as well as all the data above 23000K come from CMS19. 
-- All the data in the regions that do not enter in any of the previous three described comes from an interpolation between the different sources of data.
+As shown in **Figure 6** of the paper, the `H_SCAN+vv10_EoS.txt` table is built from multiple sources:
+
+- On the **low-pressure** side (150–11000 K, 10⁻⁴–0.1 g/cm³): SCvH data  
+- In the **intermediate regime** (2000–15000 K, 0.3–2.6 g/cm³): SCAN+vv10 data  
+- At **high densities** (> 3.4 g/cm³) and **high temperatures** (> 23000 K): CMS19 data  
+- All remaining regions: interpolation between the above datasets
+
+---
+
+### `H_SCANvv10_MD.txt`
+
+This file contains raw Molecular Dynamics results computed using the **SCAN+vv10** functional. It includes **total energies and pressures** (both electronic and ionic components) for selected state points.
+
+The file consists of 6 columns:
+
+1. **Temperature** [K]  
+2. **Density** [g/cm³]  
+3. **Energy per atom** [Ry]  
+4. **Pressure** [GPa]  
+5. **Statistical error (Energy)** [Ry]  
+6. **Statistical error (Pressure)** [GPa]
+
+These values were used to construct part of the SCAN+vv10 contribution to the full equation of state described above.
+As shown in Fig.6 of the paper we performed 126 Molecular Dynamics on a regular grid of 7 Tempertures from 2000 to 15000K and 18 Densities from 0.3 to 2.6 g/cm^3.  
 
 
 ---
 
 ## ⚠️ Notes
 
-- The table is **rectangular in T-P space**, but **not all thermodynamic quantities are available at every point**.
+- The EoS table is **rectangular in T-P space**, but **not all thermodynamic quantities are available at every point**.
 - In regions where the density, internal energy, and entropy are **not physically meaningful or relevant** (e.g., **very high T and low P**, or **very low T and high P**), these columns contain the string `'NaN'`. For a clearer view of teh shape of the EoS we again refer to Fig. 6 of the paper.
 
 ---
